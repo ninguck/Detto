@@ -541,9 +541,11 @@ export default function Home() {
             </div>
 
             {/* Chat Now Button - Full Width */}
-            <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-semibold text-base py-3">
-              Start Chatting Now
-            </Button>
+            <Link href="/ai-chat" className="block">
+              <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-semibold text-base py-3">
+                Start Chatting Now
+              </Button>
+            </Link>
           </CardContent>
         </Card>
 
