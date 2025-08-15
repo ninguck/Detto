@@ -64,6 +64,7 @@ interface ContentItem {
 interface ContentData {
   dailyGoal: DailyGoal;
   weeklyProgress: WeekDay[];
+  articles: ContentItem[];
   quizzes: ContentItem[];
 }
 
@@ -131,6 +132,14 @@ export default function ContentHub() {
         return <Brain className="w-4 h-4" />;
       case "budgeting":
         return <Zap className="w-4 h-4" />;
+      case "savings":
+        return <Trophy className="w-4 h-4" />;
+      case "credit education":
+        return <CheckCircle2 className="w-4 h-4" />;
+      case "income boost":
+        return <ArrowRight className="w-4 h-4" />;
+      case "debt management":
+        return <Circle className="w-4 h-4" />;
       default:
         return <Star className="w-4 h-4" />;
     }
@@ -296,6 +305,80 @@ export default function ContentHub() {
           </div>
         </section>
 
+        {/* Articles Section - Edge to Edge */}
+        <section>
+          <div className="max-w-6xl mx-auto px-6 mb-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <BookOpen className="w-5 h-5 text-accent" />
+                <h2 className="text-xl font-semibold text-foreground font-sans">
+                  Learning Articles
+                </h2>
+              </div>
+            </div>
+          </div>
+
+          <div className="overflow-x-auto">
+            <div className="flex gap-4 px-6 pb-4 scrollbar-hide">
+              {contentData.articles.map((article) => (
+                <Card
+                  key={article.id}
+                  className="flex-shrink-0 w-80 border-border/50 hover:border-accent/50 bg-card/90 backdrop-blur-sm shadow-md hover:shadow-lg transition-all duration-300 hover:scale-[1.02] cursor-pointer"
+                >
+                  <CardHeader className="pb-3">
+                    <div className="flex items-start justify-between">
+                      <div className="space-y-2">
+                        <div className="flex items-center gap-2">
+                          <Badge variant="outline" className="text-xs">
+                            {getCategoryIcon(article.category)}
+                            <span className="ml-1 font-sans">
+                              {article.category}
+                            </span>
+                          </Badge>
+                          <Badge
+                            variant="outline"
+                            className={`text-xs ${getDifficultyColor(
+                              article.difficulty
+                            )}`}
+                          >
+                            {article.difficulty}
+                          </Badge>
+                        </div>
+                        <CardTitle className="text-lg font-bold text-card-foreground font-sans line-clamp-2">
+                          {article.title}
+                        </CardTitle>
+                      </div>
+                      {article.completed ? (
+                        <CheckCircle2 className="w-5 h-5 text-green-500 flex-shrink-0" />
+                      ) : (
+                        <Circle className="w-5 h-5 text-muted-foreground flex-shrink-0" />
+                      )}
+                    </div>
+                  </CardHeader>
+                  <CardContent className="pt-0">
+                    <p className="text-sm text-muted-foreground mb-4 font-sans line-clamp-2">
+                      {article.description}
+                    </p>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                        <Clock className="w-3 h-3" />
+                        <span className="font-sans">{article.readingTime}</span>
+                      </div>
+                      <Button
+                        size="sm"
+                        variant={article.completed ? "outline" : "default"}
+                        disabled={!article.completed}
+                      >
+                        {article.completed ? "Review" : "Coming Soon"}
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* Quizzes Section - Edge to Edge */}
         <section>
           <div className="max-w-6xl mx-auto px-6 mb-4">
@@ -303,7 +386,7 @@ export default function ContentHub() {
               <div className="flex items-center gap-2">
                 <Brain className="w-5 h-5 text-secondary" />
                 <h2 className="text-xl font-semibold text-foreground font-sans">
-                  Available Quizzes
+                  Interactive Quizzes
                 </h2>
               </div>
             </div>
@@ -312,8 +395,18 @@ export default function ContentHub() {
           <div className="overflow-x-auto">
             <div className="flex gap-4 px-6 pb-4 scrollbar-hide">
               {contentData.quizzes.map((quiz) => (
-                <Link key={quiz.id} href="/quiz/1">
-                  <Card className="flex-shrink-0 w-80 border-border/50 hover:border-secondary/50 bg-card/90 backdrop-blur-sm shadow-md hover:shadow-lg transition-all duration-300 hover:scale-[1.02] cursor-pointer">
+                <Link
+                  key={quiz.id}
+                  href={quiz.id === 1 ? "/quiz/1" : "#"}
+                  className={quiz.id === 1 ? "" : "pointer-events-none"}
+                >
+                  <Card
+                    className={`flex-shrink-0 w-80 border-border/50 bg-card/90 backdrop-blur-sm shadow-md transition-all duration-300 cursor-pointer ${
+                      quiz.id === 1
+                        ? "hover:border-secondary/50 hover:shadow-lg hover:scale-[1.02]"
+                        : "opacity-75"
+                    }`}
+                  >
                     <CardHeader className="pb-3">
                       <div className="flex items-start justify-between">
                         <div className="space-y-2">
@@ -367,10 +460,17 @@ export default function ContentHub() {
                           className={
                             quiz.completed
                               ? ""
-                              : "bg-secondary hover:bg-secondary/90"
+                              : quiz.id === 1
+                              ? "bg-secondary hover:bg-secondary/90"
+                              : ""
                           }
+                          disabled={quiz.id !== 1 && !quiz.completed}
                         >
-                          {quiz.completed ? "Retake" : "Start Quiz"}
+                          {quiz.completed
+                            ? "Retake"
+                            : quiz.id === 1
+                            ? "Start Quiz"
+                            : "Coming Soon"}
                         </Button>
                       </div>
                     </CardContent>

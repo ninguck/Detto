@@ -86,6 +86,88 @@
       "quizCompleted": false
     }
   ],
+  "articles": [
+    {
+      "id": 1,
+      "title": "The Power of Strategic Debt Payoff",
+      "description": "Learn the proven Avalanche and Snowball methods to eliminate debt faster",
+      "readingTime": "3 min read",
+      "category": "Debt Strategy",
+      "difficulty": "Beginner",
+      "completed": true,
+      "day": 1
+    },
+    {
+      "id": 2,
+      "title": "Small Leaks Sink Big Ships",
+      "description": "Identify and eliminate the small expenses that are sabotaging your debt progress",
+      "readingTime": "2 min read",
+      "category": "Expense Tracking",
+      "difficulty": "Beginner",
+      "completed": false,
+      "day": 3
+    },
+    {
+      "id": 3,
+      "title": "APR: The Number That Rules Your Debt",
+      "description": "Master financial vocabulary and understand how interest rates impact your payoff timeline",
+      "readingTime": "2 min read",
+      "category": "Financial Education",
+      "difficulty": "Intermediate",
+      "completed": false,
+      "day": 5
+    },
+    {
+      "id": 4,
+      "title": "The Art of Smart Spending Cuts",
+      "description": "Reduce expenses without sacrificing happiness using proven psychological techniques",
+      "readingTime": "3 min read",
+      "category": "Budgeting",
+      "difficulty": "Intermediate",
+      "completed": false,
+      "day": 6
+    },
+    {
+      "id": 5,
+      "title": "Emergency Fund Essentials",
+      "description": "Build your financial safety net while paying off debt - yes, you can do both!",
+      "readingTime": "4 min read",
+      "category": "Savings",
+      "difficulty": "Beginner",
+      "completed": false,
+      "day": null
+    },
+    {
+      "id": 6,
+      "title": "Credit Score Myths Debunked",
+      "description": "Separate fact from fiction about credit scores and debt payoff strategies",
+      "readingTime": "3 min read",
+      "category": "Credit Education",
+      "difficulty": "Intermediate",
+      "completed": false,
+      "day": null
+    },
+    {
+      "id": 7,
+      "title": "Side Hustle Success Stories",
+      "description": "Real people share how they earned extra income to accelerate debt freedom",
+      "readingTime": "5 min read",
+      "category": "Income Boost",
+      "difficulty": "Beginner",
+      "completed": false,
+      "day": null
+    },
+    {
+      "id": 8,
+      "title": "Negotiating with Creditors",
+      "description": "Scripts and strategies for lowering interest rates and payment plans",
+      "readingTime": "4 min read",
+      "category": "Debt Management",
+      "difficulty": "Advanced",
+      "completed": false,
+      "day": null
+    }
+  ],
   "quizzes": [
     {
       "id": 1,
@@ -96,6 +178,46 @@
       "completed": true,
       "score": 85,
       "day": 1
+    },
+    {
+      "id": 2,
+      "title": "Expense Detective Challenge",
+      "description": "Practice identifying and categorizing hidden money drains",
+      "questions": 5,
+      "difficulty": "Beginner",
+      "completed": false,
+      "score": null,
+      "day": 3
+    },
+    {
+      "id": 3,
+      "title": "Financial Vocabulary Builder",
+      "description": "Master essential terms like APR, principal, and credit utilization",
+      "questions": 4,
+      "difficulty": "Intermediate",
+      "completed": false,
+      "score": null,
+      "day": 5
+    },
+    {
+      "id": 4,
+      "title": "Budget Cutting Simulator",
+      "description": "Make tough choices about where to trim expenses for maximum impact",
+      "questions": 6,
+      "difficulty": "Intermediate",
+      "completed": false,
+      "score": null,
+      "day": 6
+    },
+    {
+      "id": 5,
+      "title": "Debt Freedom Calculator",
+      "description": "Set realistic goals and calculate your path to financial freedom",
+      "questions": 4,
+      "difficulty": "Advanced",
+      "completed": false,
+      "score": null,
+      "day": 7
     }
   ]
 }
