@@ -1,4 +1,4 @@
-import GameHeader from "@/components/game-header"
+
 import SkillTree from "@/components/skill-tree"
 import { BottomNavigation } from "@/components/bottom-navigation"
 import { NavigationHeader } from "@/components/navigation-header"

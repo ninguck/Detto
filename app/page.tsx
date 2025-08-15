@@ -246,7 +246,7 @@ export default function Home() {
       {/* Main Content */}
       <div className="max-w-4xl mx-auto px-6 py-6 pb-32 space-y-6">
         {/* Daily Progress Card */}
-        <Card className="border-green-200 bg-card/90 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02]">
+        <Card className="border-green-200 bg-card/90 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all">
           <CardContent className="p-4">
             <div className="flex items-center justify-between mb-3">
               <h2 className="font-semibold text-card-foreground font-sans">
@@ -334,9 +334,9 @@ export default function Home() {
             className="h-20 border-teal-200 hover:bg-gradient-to-br hover:from-teal-50 hover:to-cyan-50 flex-col gap-2 bg-card/80 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 group"
           >
             <Target className="w-6 h-6 text-teal-600 group-hover:animate-pulse" />
-            <span className="text-sm font-medium text-teal-700 font-sans">
+            <Link href="/progress" className="text-sm font-medium text-teal-700 font-sans">
               Track Debt
-            </span>
+            </Link>
           </Button>
         </div>
 
