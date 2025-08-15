@@ -35,9 +35,11 @@ export function BottomNavigation() {
           </Link>
 
           {/* Progress Tab */}
-          <Button variant="ghost" className="w-full text-card-foreground hover:text-primary hover:bg-primary/10 font-medium font-sans">
-            Progress
-          </Button>
+          <Link href="/progress" className="w-full">
+            <Button variant="ghost" className="w-full text-card-foreground hover:text-primary hover:bg-primary/10 font-medium font-sans">
+              Progress
+            </Button>
+          </Link>
         </div>
       </div>
     </div>
