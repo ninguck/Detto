@@ -9,13 +9,12 @@ import { Badge } from "@/components/ui/badge";
 import ArticlesSection from "@/components/ui/articles-section";
 import { Progress } from "@/components/ui/progress";
 import { BottomNavigation } from "@/components/bottom-navigation";
+import { NavigationHeader } from "@/components/navigation-header";
 import {
   BookOpen,
   Trophy,
   Users,
   Target,
-  Flame,
-  Star,
   TrendingUp,
   DollarSign,
   Sparkles,
@@ -234,36 +233,11 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       {/* Navigation Bar */}
-      <div className="bg-card/95 backdrop-blur-md border-b border-border shadow-sm">
-        <div className="max-w-4xl mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-3">
-              <div className="w-14 h-14 rounded-full overflow-hidden">
-                <Image
-                  src="/wemo-mascot.png"
-                  alt="WeMoney Mascot"
-                  width={56}
-                  height={56}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div>
-                <h2 className="text-2xl font-bold text-card-foreground font-sans">
-                  Hey, {userData.user.name}!
-                </h2>
-              </div>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="flex items-center gap-1 bg-gradient-to-r from-yellow-100 to-orange-100 px-3 py-2 rounded-full shadow-sm animate-pulse">
-                <Flame className="w-4 h-4 text-orange-600" />
-                <span className="text-sm font-bold text-orange-700 font-sans">
-                  {userData.stats.currentStreak}
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <NavigationHeader
+        userName={userData.user.name}
+        currentStreak={userData.stats.currentStreak}
+        totalPoints={userData.stats.totalPoints}
+      />
 
       {/* Main Content */}
       <div className="max-w-4xl mx-auto px-6 py-6 pb-32 space-y-6">
@@ -535,7 +509,7 @@ export default function Home() {
             </Button>
           </CardContent>
         </Card>
-        
+
         {/* Articles Section */}
         <Card className="border-accent/20 bg-card/90 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300">
           <CardContent className="p-4">

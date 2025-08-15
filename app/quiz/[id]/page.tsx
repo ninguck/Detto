@@ -144,7 +144,7 @@ export default function QuizPage() {
           <p className="text-muted-foreground mb-4">
             The requested quiz could not be loaded.
           </p>
-          <Link href="/content">
+          <Link href="/game">
             <Button>← Back to Content</Button>
           </Link>
         </div>
@@ -202,12 +202,13 @@ export default function QuizPage() {
                   <RotateCcw className="w-4 h-4 mr-2" />
                   Retake Quiz
                 </Button>
-                <Button
-                  onClick={handleBackToDashboard}
-                  className="bg-green-600 hover:bg-green-700"
-                >
-                  Continue Learning
-                </Button>
+                <Link href="/game" passHref>
+                  <Button
+                    className="bg-green-600 hover:bg-green-700"
+                  >
+                    Continue Learning
+                  </Button>
+                </Link>
               </div>
             </CardContent>
           </Card>

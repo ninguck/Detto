@@ -187,8 +187,8 @@ export default function SkillTree() {
   const [selectedLesson, setSelectedLesson] = useState<string | null>(null)
 
   const handleLessonClick = (lesson: LessonNode) => {
-    // Make all lessons clickable - even locked ones can show preview or coming soon
-    router.push(`/lesson/${lesson.id}`)
+    // All lessons and challenges now point to quiz/1
+    router.push(`/quiz/1`)
   }
 
 
