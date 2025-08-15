@@ -8,7 +8,7 @@ export default function MilestonesPage() {
     <div className="container mx-auto px-4 py-8">
       <MilestoneBoard
         milestones={milestones}
-        title="Your Big Debt Milestones"
+        title="Level Up Milestones"
         className="min-h-screen"
       />
     </div>
