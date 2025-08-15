@@ -434,24 +434,19 @@ export default function Home() {
           </CardContent>
         </Card>
 
-        {/* WeMoney Mascot - Enhanced */}
-        <div className="text-center">
+        {/* WeMoney Mascot - Fixed Bottom Left */}
+        <div className="fixed bottom-6 left-6 z-50">
           <Link
             href="/ai-chat"
             className="inline-block transition-transform hover:scale-105 cursor-pointer group"
           >
-            <div className="relative">
-              <Image
-                src="/wemo-mascot.png"
-                alt="WeMoney Mascot - Click to start chat"
-                width={140}
-                height={140}
-                className="drop-shadow-lg group-hover:drop-shadow-xl transition-all"
-              />
-              <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-primary text-primary-foreground px-4 py-2 rounded-full text-sm font-semibold font-sans shadow-lg">
-                Chat with AI
-              </div>
-            </div>
+            <Image
+              src="/wemo-mascot.png"
+              alt="WeMoney Mascot - Click to start chat"
+              width={120}
+              height={120}
+              className="drop-shadow-lg group-hover:drop-shadow-xl transition-all cursor-pointer"
+            />
           </Link>
         </div>
       </div>
