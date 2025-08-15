@@ -18,7 +18,7 @@ export default function MilestonesPage() {
   return (
     <main
       style={{
-        maxWidth: 600,
+        maxWidth: 650,
         margin: '0 auto',
         padding: '2.5rem 1rem',
         background: 'var(--background)',
@@ -45,7 +45,7 @@ export default function MilestonesPage() {
           color: 'var(--card-foreground)'
         }}
       >
-        Celebrate your major financial wins! These are the big checkpoints you’ll unlock along your journey.
+        Celebrate your major financial wins! These are the big checkpoints you'll unlock along your journey.
       </p>
 
       <ul
@@ -70,26 +70,15 @@ export default function MilestonesPage() {
                 : '0 2px 8px -6px #d8dbe680',
               borderRadius: 14,
               padding: '1.15rem 1.35rem',
-              transition: 'background 0.2s,border 0.22s,box-shadow 0.24s',
+              transition: 'background 0.2s, border 0.22s, box-shadow 0.24s',
               display: 'flex',
               alignItems: 'center',
-              gap: '1.15rem',
+              justifyContent: 'space-between',
               opacity: m.achieved ? 1 : 0.88
             }}
           >
-            <span
-              style={{
-                fontSize: '2rem',
-                padding: '0.14rem',
-                borderRadius: '50%',
-                border: m.achieved ? '2px solid #19ebc2' : 'none',
-                background: m.achieved ? '#7dfad84b' : 'transparent',
-                boxShadow: m.achieved ? '0 1px 5px #7dfad855' : 'none'
-              }}
-            >
-              {m.achieved ? '✅' : m.icon}
-            </span>
-            <div>
+            {/* Left side: Text */}
+            <div style={{ flex: 1, paddingRight: '1rem' }}>
               <div
                 style={{
                   fontWeight: 600,
@@ -119,6 +108,15 @@ export default function MilestonesPage() {
                 >
                   Milestone unlocked!
                 </div>
+              )}
+            </div>
+
+            {/* Right side: Status icon */}
+            <div style={{ fontSize: '1.8rem' }}>
+              {m.achieved ? (
+                '✅'
+              ) : (
+                <span style={{ color: '#0E27F5' }}>🔒</span>
               )}
             </div>
           </li>
