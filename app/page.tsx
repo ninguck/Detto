@@ -256,22 +256,54 @@ export default function Home() {
 
         {/* Quick Actions */}
         <div className="grid grid-cols-2 gap-4">
-          <Link href="/content">
-            <Button className="w-full h-20 bg-gradient-to-br from-green-600 to-emerald-700 hover:from-green-700 hover:to-emerald-800 text-white flex-col gap-2 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 group">
-              <BookOpen className="w-6 h-6 group-hover:animate-bounce" />
-              <span className="text-sm font-medium font-sans">Learn</span>
-            </Button>
-          </Link>
+          <Button className="h-20 bg-gradient-to-br from-green-600 to-emerald-700 hover:from-green-700 hover:to-emerald-800 text-white flex-col gap-2 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 group">
+            <BookOpen className="w-6 h-6 group-hover:animate-bounce" />
+            <span className="text-sm font-medium font-sans">Learn</span>
+          </Button>
           <Button
             variant="outline"
             className="h-20 border-teal-200 hover:bg-gradient-to-br hover:from-teal-50 hover:to-cyan-50 flex-col gap-2 bg-card/80 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 group"
           >
             <Target className="w-6 h-6 text-teal-600 group-hover:animate-pulse" />
-            <span className="text-sm font-medium text-teal-700 font-sans">
-              Track Debt
-            </span>
+            <span className="text-sm font-medium text-teal-700 font-sans">Track Debt</span>
           </Button>
         </div>
+
+        {/* AI Chat Card */}
+        <Card className="border-accent/20 bg-gradient-to-r from-accent/10 to-secondary/10 shadow-lg">
+          <CardContent className="p-6">
+            {/* Title and Mascot Row */}
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-lg font-semibold text-card-foreground font-sans">
+                Need Financial Help?
+              </h3>
+              <div className="ml-4">
+                <Link
+                  href="/ai-chat"
+                  className="inline-block transition-transform hover:scale-105 cursor-pointer group"
+                >
+                  <Image
+                    src="/wemo-mascot.png"
+                    alt="WeMoney Mascot - Click to start chat"
+                    width={140}
+                    height={140}
+                    className="drop-shadow-lg group-hover:drop-shadow-xl transition-all cursor-pointer"
+                  />
+                </Link>
+              </div>
+            </div>
+            
+            {/* Description and Button - Full Width */}
+            <div className="w-full">
+              <p className="text-muted-foreground font-sans mb-4">
+                Click on our friendly mascot to get personalized AI assistance with your financial questions and debt management journey.
+              </p>
+              <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-medium font-sans">
+                Chat Now
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
 
         {/* Current Lesson */}
         <Card className="border-teal-200 bg-card/90 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02]">
@@ -432,22 +464,6 @@ export default function Home() {
         </Card>
       </div>
 
-      {/* WeMoney Mascot - Fixed Bottom Left */}
-      <div className="fixed bottom-6 left-6 z-50">
-        <Link
-          href="/ai-chat"
-          className="inline-block transition-transform hover:scale-105 cursor-pointer group"
-        >
-          <Image
-            src="/wemo-mascot.png"
-            alt="WeMoney Mascot - Click to start chat"
-            width={120}
-            height={120}
-            className="drop-shadow-lg group-hover:drop-shadow-xl transition-all cursor-pointer"
-          />
-        </Link>
-      </div>
-
       {/* Bottom Navigation Bar */}
       <div className="fixed bottom-0 left-0 right-0 z-40 bg-card border-t border-border shadow-lg">
         <div className="max-w-4xl mx-auto px-6 py-4">
@@ -469,7 +485,7 @@ export default function Home() {
 
             {/* Leaderboard Tab */}
             <Button variant="ghost" className="text-card-foreground hover:text-primary hover:bg-primary/10 font-medium font-sans">
-              Leaderboard
+              Ranks
             </Button>
 
             {/* Progress Tab */}
