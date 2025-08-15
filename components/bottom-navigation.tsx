@@ -23,9 +23,11 @@ export function BottomNavigation() {
           </Link>
 
           {/* Centered Learn Button */}
-          <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-bold text-lg px-6 py-2 shadow-lg font-sans">
-            Learn
-          </Button>
+          <Link href="/game" className="w-full">
+            <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-bold text-lg px-6 py-2 shadow-lg font-sans">
+              Learn
+            </Button>
+          </Link>
 
           {/* Ranks Tab */}
           <Link href="/leaderboard" className="w-full">

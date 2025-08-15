@@ -30,6 +30,7 @@ import {
   Flag,
   Banknote,
   PartyPopper,
+  Star,
 } from "lucide-react";
 
 interface UserData {
@@ -86,6 +87,9 @@ interface WeekDay {
   day: number;
   dayName: string;
   title: string;
+  prefix: string;
+  estimatedTime: string;
+  streakDay: number;
   completed: boolean;
   current: boolean;
   hasQuiz: boolean;
@@ -313,10 +317,16 @@ export default function Home() {
 
         {/* Quick Actions */}
         <div className="grid grid-cols-2 gap-4">
-          <Link href="/content" className="w-full">
+          {/* <Link href="/content" className="w-full">
             <Button className="w-full h-20 bg-gradient-to-br from-green-600 to-emerald-700 hover:from-green-700 hover:to-emerald-800 text-white flex-col gap-2 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 group">
               <BookOpen className="w-6 h-6 group-hover:animate-bounce" />
-              <span className="text-sm font-medium font-sans">Learn</span>
+              <span className="text-sm font-medium font-sans">Courses</span>
+            </Button>
+          </Link> */}
+          <Link href="/content" className="w-full">
+            <Button className="w-full h-20 bg-background hover:bg-cyan-50 border-teal-200 border text-teal-700 flex-col gap-2 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 group">
+              <BookOpen className="w-6 h-6 group-hover:animate-bounce" />
+              <span className="text-sm font-medium font-sans">Courses</span>
             </Button>
           </Link>
           <Button
@@ -384,6 +394,20 @@ export default function Home() {
 
                     <div className="flex-1">
                       <div className="flex items-center gap-2">
+                        <Badge
+                          variant="outline"
+                          className={`text-xs px-2 py-1 ${
+                            day.prefix === "Article"
+                              ? "border-blue-200 text-blue-700 bg-blue-50"
+                              : day.prefix === "Quiz"
+                              ? "border-purple-200 text-purple-700 bg-purple-50"
+                              : day.prefix === "Challenge"
+                              ? "border-orange-200 text-orange-700 bg-orange-50"
+                              : "border-green-200 text-green-700 bg-green-50"
+                          }`}
+                        >
+                          {day.prefix}
+                        </Badge>
                         <span
                           className={`font-medium font-sans ${
                             day.current
@@ -399,9 +423,22 @@ export default function Home() {
                           <Brain className="w-4 h-4 text-secondary" />
                         )}
                       </div>
-                      <p className="text-xs text-muted-foreground font-sans">
-                        {day.dayName} • Day {day.day}
-                      </p>
+                      <div className="flex items-center gap-3 mt-1">
+
+                        <p className="text-xs text-muted-foreground font-sans">
+                        Day {day.day}
+                        </p>
+                        <span className="text-xs text-muted-foreground font-sans">
+                          •
+                        </span>
+                        <p className="text-xs text-muted-foreground font-sans">
+                          {day.estimatedTime}
+                        </p>
+
+                        {/* <p className="text-xs text-muted-foreground font-sans">
+                          Streak Day {day.streakDay}
+                        </p> */}
+                      </div>
                     </div>
 
                     {day.completed && (
