@@ -88,7 +88,7 @@
       "name": "Sarah",
       "avatar": "S",
       "lastActivity": "2 hours ago",
-      "activity": "completed 'Budgeting Basics'",
+      "activity": "Completed 'Budgeting Basics'",
       "xpGained": 50
     },
     {
@@ -96,7 +96,7 @@
       "name": "Mike",
       "avatar": "M",
       "lastActivity": "5 hours ago",
-      "activity": "reached 10-day streak!",
+      "activity": "Reached 10-day streak!",
       "xpGained": 100
     }
   ],

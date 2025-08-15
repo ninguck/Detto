@@ -19,7 +19,7 @@ import {
   PromptInputToolbar,
   PromptInputTools,
 } from "@/components/ai-elements/prompt-input";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useChat } from "@ai-sdk/react";
 import { Response } from "@/components/ai-elements/response";
 import { GlobeIcon } from "lucide-react";
@@ -51,7 +51,47 @@ const ChatBotDemo = () => {
   const [input, setInput] = useState("");
   const [model, setModel] = useState<string>(models[0].value);
   const [webSearch, setWebSearch] = useState(false);
-  const { messages, sendMessage, status } = useChat();
+  const { messages, sendMessage, status, setMessages } = useChat();
+  const [hasInitialized, setHasInitialized] = useState(false);
+
+  // Add initial welcome message when component mounts
+  useEffect(() => {
+    if (!hasInitialized && messages.length === 0) {
+            setMessages([
+        {
+          id: "welcome-message-1",
+          role: "assistant",
+          parts: [
+            {
+              type: "text",
+              text: `Hey Nick! 👋`,
+            },
+          ],
+        },
+        {
+          id: "welcome-message-2",
+          role: "assistant",
+          parts: [
+            {
+              type: "text",
+              text: `I'm Detto, your financial assistant. I can help with budgeting, debt strategies, expense tracking, and a lot more.`,
+            },
+          ],
+        },
+        {
+          id: "welcome-message-3",
+          role: "assistant",
+          parts: [
+            {
+              type: "text",
+              text: `Any questions about your finances?`,
+            },
+          ],
+        },
+      ]);
+      setHasInitialized(true);
+    }
+  }, [messages.length, hasInitialized, setMessages]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
