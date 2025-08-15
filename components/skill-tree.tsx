@@ -245,22 +245,22 @@ export default function SkillTree() {
                   </Button>
 
 
-                  {/* Add huge background WeMo mascot images in curve negative space */}
+                  {/* Add background WeMo mascot images in curve negative space */}
                   {index === 1 && (
-                    <div className="absolute -top-12 -left-20 transform rotate-12 -z-10 pointer-events-none">
+                    <div className="absolute -top-8 -left-12 transform rotate-12 -z-10 pointer-events-none">
                       <img
                         src="/adventurous_wemo.png"
                         alt=""
-                        className="w-40 h-40 object-contain opacity-15 saturate-150"
+                        className="w-24 h-24 object-contain opacity-10 saturate-150"
                       />
                     </div>
                   )}
                   {index === 8 && (
-                    <div className="absolute -bottom-12 -right-20 transform -rotate-12 -z-10 pointer-events-none">
+                    <div className="absolute -bottom-8 -right-12 transform -rotate-12 -z-10 pointer-events-none">
                       <img
                         src="/studious_wemo.png"
                         alt=""
-                        className="w-40 h-40 object-contain opacity-15 saturate-150"
+                        className="w-24 h-24 object-contain opacity-10 saturate-150"
                       />
                     </div>
                   )}
