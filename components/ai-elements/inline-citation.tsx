@@ -13,7 +13,6 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  useCarousel,
 } from '@/components/ui/carousel';
 import { ArrowLeftIcon, ArrowRightIcon } from 'lucide-react';
 
@@ -122,96 +121,7 @@ export const InlineCitationCarouselHeader = ({
   />
 );
 
-export type InlineCitationCarouselIndexProps = ComponentProps<'div'>;
 
-export const InlineCitationCarouselIndex = ({
-  children,
-  className,
-  ...props
-}: InlineCitationCarouselIndexProps) => {
-  const { api } = useCarousel();
-  const [current, setCurrent] = React.useState(0);
-  const [count, setCount] = React.useState(0);
-
-  React.useEffect(() => {
-    if (!api) {
-      return;
-    }
-
-    setCount(api.scrollSnapList().length);
-    setCurrent(api.selectedScrollSnap() + 1);
-
-    api.on('select', () => {
-      setCurrent(api.selectedScrollSnap() + 1);
-    });
-  }, [api]);
-
-  return (
-    <div
-      className={cn(
-        'flex items-center flex-1 justify-end px-3 py-1 text-xs text-muted-foreground',
-        className,
-      )}
-      {...props}
-    >
-      {children ?? `${current}/${count}`}
-    </div>
-  );
-};
-
-export type InlineCitationCarouselPrevProps = ComponentProps<'button'>;
-
-export const InlineCitationCarouselPrev = ({
-  className,
-  ...props
-}: InlineCitationCarouselPrevProps) => {
-  const { api } = useCarousel();
-
-  const handleClick = React.useCallback(() => {
-    if (api) {
-      api.scrollPrev();
-    }
-  }, [api]);
-
-  return (
-    <button
-      type="button"
-      className={cn('shrink-0', className)}
-      onClick={handleClick}
-      aria-label="Previous"
-      {...props}
-    >
-      <ArrowLeftIcon className="size-4 text-muted-foreground" />
-    </button>
-  );
-};
-
-export type InlineCitationCarouselNextProps = ComponentProps<'button'>;
-
-export const InlineCitationCarouselNext = ({
-  className,
-  ...props
-}: InlineCitationCarouselNextProps) => {
-  const { api } = useCarousel();
-
-  const handleClick = React.useCallback(() => {
-    if (api) {
-      api.scrollNext();
-    }
-  }, [api]);
-
-  return (
-    <button
-      type="button"
-      className={cn('shrink-0', className)}
-      onClick={handleClick}
-      aria-label="Next"
-      {...props}
-    >
-      <ArrowRightIcon className="size-4 text-muted-foreground" />
-    </button>
-  );
-};
 
 export type InlineCitationSourceProps = ComponentProps<'div'> & {
   title?: string;
