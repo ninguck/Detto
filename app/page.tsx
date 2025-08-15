@@ -19,7 +19,6 @@ import {
   Sparkles,
   SunIcon,
 } from "lucide-react";
-import { BottomNavigation } from "@/components/bottom-navigation";
 
 interface UserData {
   user: {
@@ -277,7 +276,7 @@ export default function Home() {
             <h3 className="text-xl font-bold text-card-foreground font-sans mb-6 text-center">
               Need Financial Guidance?
             </h3>
-            
+
             {/* Description and Mascot Row */}
             <div className="flex items-center justify-between mb-8">
               <div className="flex-1 mr-8">
@@ -300,7 +299,7 @@ export default function Home() {
                 </Link>
               </div>
             </div>
-            
+
             {/* Chat Now Button - Full Width */}
             <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-semibold text-base py-3">
               Start Chatting Now
@@ -468,7 +467,38 @@ export default function Home() {
       </div>
 
       {/* Bottom Navigation Bar */}
-      <BottomNavigation />
+      <div className="fixed bottom-0 left-0 right-0 z-40 bg-card border-t border-border shadow-lg">
+        <div className="max-w-4xl mx-auto px-6 py-4">
+          <div className="grid grid-cols-5 gap-4 items-center">
+            {/* Home Tab */}
+            <Button variant="ghost" className="text-card-foreground hover:text-primary hover:bg-primary/10 font-medium font-sans">
+              Home
+            </Button>
+
+            {/* Courses Tab */}
+            <Button variant="ghost" className="text-card-foreground hover:text-primary hover:bg-primary/10 font-medium font-sans">
+              Courses
+            </Button>
+
+            {/* Centered Learn Button */}
+            <a href="/game" className="col-span-1 flex justify-center">
+              <Button className="bg-primary text-primary-foreground hover:bg-primary/90 font-bold text-lg px-6 py-2 shadow-lg font-sans">
+                Learn
+              </Button>
+            </a>
+
+            {/* Leaderboard Tab */}
+            <Button variant="ghost" className="text-card-foreground hover:text-primary hover:bg-primary/10 font-medium font-sans">
+              Ranks
+            </Button>
+
+            {/* Progress Tab */}
+            <Button variant="ghost" className="text-card-foreground hover:text-primary hover:bg-primary/10 font-medium font-sans">
+              Progress
+            </Button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
