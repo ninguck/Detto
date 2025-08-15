@@ -162,12 +162,12 @@ export default function Home() {
                 />
               </div>
               <div>
-                <h2 className="text-lg font-bold text-card-foreground font-sans">
+                <h2 className="text-2xl font-bold text-card-foreground font-sans">
                   Hey, {userData.user.name}!
                 </h2>
               </div>
             </div>
-            <div className="flex flex-col sm:flex-row items-end sm:items-center gap-2">
+            <div className="flex items-center gap-2">
               <div className="flex items-center gap-1 bg-gradient-to-r from-yellow-100 to-orange-100 px-3 py-2 rounded-full shadow-sm animate-pulse">
                 <Flame className="w-4 h-4 text-orange-600" />
                 <span className="text-sm font-bold text-orange-700 font-sans">{userData.stats.currentStreak}</span>
