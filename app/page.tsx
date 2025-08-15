@@ -72,18 +72,8 @@ export default function Home() {
 
       {/* Main Content */}
       <div className="relative z-10 max-w-4xl mx-auto p-6">
-        {/* Header Section */}
-        <div className="text-center mb-8 pt-8">
-          <h1 className="text-5xl font-bold text-primary mb-2 font-sans">
-            Detto
-          </h1>
-          <p className="text-xl text-muted-foreground font-sans">
-            Your finances, simplified
-          </p>
-        </div>
-
         {/* Morning Message & Stats Section */}
-        <div className="bg-card border border-border rounded-lg p-6 mb-6 shadow-lg">
+        <div className="bg-card border border-border rounded-lg p-6 mb-6 shadow-lg mt-8">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center space-x-3">
               <div className="p-3 bg-primary/10 rounded-full">
@@ -179,7 +169,7 @@ export default function Home() {
                 </div>
                 <span className="text-xs text-muted-foreground font-sans">First Lesson</span>
               </div>
-              <div className="flex flex-col items-center gap-1 group cursor-pointer">
+              <div className="flex flex-col items-center gap-2 group cursor-pointer">
                 <div className="w-12 h-12 bg-gradient-to-br from-green-100 to-emerald-100 rounded-full flex items-center justify-center shadow-md group-hover:shadow-lg transition-all duration-300 group-hover:scale-110">
                   <TrendingUp className="w-6 h-6 text-green-600 group-hover:animate-pulse" />
                 </div>
