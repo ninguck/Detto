@@ -39,6 +39,50 @@ const lessonContent = {
       { id: 4, question: "This strategy saves you:", answer: "The most money in interest" },
     ],
   },
+  "lesson-3": {
+    title: "Financial Awareness Check-in",
+    content:
+      "Building financial awareness is the foundation of debt management. This weekly check-in helps you track your progress and identify spending patterns. Regular monitoring allows you to catch problems early and celebrate wins. Set aside 15 minutes each week to review your accounts, track your debt balances, and note any changes in your financial situation.",
+    quiz: [
+      { id: 1, question: "How often should you check your finances?", answer: "Weekly" },
+      { id: 2, question: "What should you track regularly?", answer: "Debt balances and spending" },
+      { id: 3, question: "Why is financial awareness important?", answer: "Catch problems early" },
+      { id: 4, question: "How long should a financial check-in take?", answer: "About 15 minutes" },
+    ],
+  },
+  "lesson-4": {
+    title: "Emergency Fund Basics",
+    content:
+      "An emergency fund is your financial safety net. Start with a goal of $500-$1000, then work toward 3-6 months of expenses. This fund prevents you from going into debt when unexpected costs arise - car repairs, medical bills, or job loss. Keep this money in a separate, easily accessible savings account. Even $25 per month adds up over time.",
+    quiz: [
+      { id: 1, question: "What's a good starter emergency fund goal?", answer: "$500-$1000" },
+      { id: 2, question: "Ultimate emergency fund goal?", answer: "3-6 months expenses" },
+      { id: 3, question: "Where should you keep emergency funds?", answer: "Separate savings account" },
+      { id: 4, question: "What does an emergency fund prevent?", answer: "Going into debt for unexpected costs" },
+    ],
+  },
+  "lesson-5": {
+    title: "Budget Optimization",
+    content:
+      "A good budget isn't about restriction - it's about intentional spending. Use the 50/30/20 rule as a starting point: 50% needs, 30% wants, 20% savings and debt payments. Look for small wins: cancel unused subscriptions, negotiate bills, or find cheaper alternatives. Even saving $50/month creates $600 annually for debt payoff or emergency fund.",
+    quiz: [
+      { id: 1, question: "What's the 50/30/20 rule?", answer: "50% needs, 30% wants, 20% savings/debt" },
+      { id: 2, question: "What's budget optimization about?", answer: "Intentional spending" },
+      { id: 3, question: "Name a budget optimization strategy:", answer: "Cancel unused subscriptions" },
+      { id: 4, question: "How much does saving $50/month create annually?", answer: "$600" },
+    ],
+  },
+  "challenge-2": {
+    title: "Savings Challenge Complete",
+    content:
+      "Congratulations! You've completed your first savings milestone. This challenge tested your ability to consistently set aside money and resist the urge to spend it. You've proven you can build wealth systematically. Use this momentum to tackle your next financial goal - whether that's growing your emergency fund, paying off debt faster, or starting to invest for the future.",
+    quiz: [
+      { id: 1, question: "What did this challenge prove?", answer: "You can build wealth systematically" },
+      { id: 2, question: "What skill did you develop?", answer: "Consistent saving" },
+      { id: 3, question: "What should you do with this momentum?", answer: "Tackle your next financial goal" },
+      { id: 4, question: "What are potential next goals?", answer: "Emergency fund, debt payoff, or investing" },
+    ],
+  },
 }
 
 export default function LessonPage() {

@@ -5,13 +5,13 @@ import { useState } from "react"
 import type React from "react"
 import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
-import { CheckCircle, Lock, Play, Target, BookOpen, Calculator, PiggyBank, CreditCard } from "lucide-react"
+import { CheckCircle, Play, Target, BookOpen, Calculator, PiggyBank, CreditCard, Flag } from "lucide-react"
 
 interface LessonNode {
   id: string
   title: string
   type: "lesson" | "challenge"
-  status: "completed" | "current" | "locked"
+  status: "completed" | "current" | "available"
   icon: React.ReactNode
   description: string
 }
@@ -45,7 +45,7 @@ const lessons: LessonNode[] = [
     id: "lesson-3",
     title: "Awareness",
     type: "lesson",
-    status: "locked",
+    status: "available",
     icon: <Calculator className="h-5 w-5" />,
     description: "First Weekly Checkin",
   },
@@ -53,7 +53,7 @@ const lessons: LessonNode[] = [
     id: "lesson-4",
     title: "Emergency Fund Basics",
     type: "lesson",
-    status: "locked",
+    status: "available",
     icon: <PiggyBank className="h-5 w-5" />,
     description: "Build your financial safety net",
   },
@@ -61,7 +61,7 @@ const lessons: LessonNode[] = [
     id: "lesson-5",
     title: "Budget Optimization",
     type: "lesson",
-    status: "locked",
+    status: "available",
     icon: <Calculator className="h-5 w-5" />,
     description: "Optimize your monthly budget",
   },
@@ -69,7 +69,7 @@ const lessons: LessonNode[] = [
     id: "challenge-2",
     title: "Savings Challenge",
     type: "challenge",
-    status: "locked",
+    status: "available",
     icon: <Target className="h-5 w-5" />,
     description: "Complete your first savings goal",
   },
@@ -105,9 +105,8 @@ export default function SkillTree() {
   const [selectedLesson, setSelectedLesson] = useState<string | null>(null)
 
   const handleLessonClick = (lesson: LessonNode) => {
-    if (lesson.status !== "locked") {
-      router.push(`/lesson/${lesson.id}`)
-    }
+    // Make all lessons clickable - even locked ones can show preview or coming soon
+    router.push(`/lesson/${lesson.id}`)
   }
 
 
@@ -117,8 +116,11 @@ export default function SkillTree() {
       <div className="max-w-sm mx-auto relative">
         {/* Milestone */}
         <div className="bg-secondary border-2 border-border rounded-lg p-4 mb-8 shadow-md">
-          <div className="text-secondary-foreground font-bold text-xs tracking-wider uppercase font-sans mb-1">DEBT MANAGEMENT</div>
-          <div className="text-secondary-foreground font-bold text-xl font-sans leading-tight">Financial Wellness Journey</div>
+          <div className="flex items-center gap-2 mb-1">
+            <Flag className="h-4 w-4 text-secondary-foreground" />
+            <div className="text-secondary-foreground font-bold text-xs tracking-wider uppercase font-sans">Milestone 1</div>
+          </div>
+          {/* <div className="text-secondary-foreground font-bold text-xl font-sans leading-tight">Financial Wellness Journey</div> */}
         </div>
 
         <div className="relative w-full">
@@ -139,25 +141,16 @@ export default function SkillTree() {
                     variant="ghost"
                     className={`
                       relative p-0 w-16 h-16 border-4 border-border shadow-lg
-                      ${lesson.type === "challenge" ? "rounded-lg" : "rounded-full"}
-                      ${
-                        lesson.status === "completed"
-                          ? "bg-secondary hover:bg-secondary/90 shadow-secondary/20"
-                          : lesson.status === "current"
-                            ? "bg-secondary hover:bg-secondary/90 shadow-secondary/20 ring-1"
-                            : "bg-secondary/40 hover:bg-secondary/60 shadow-secondary/20"
-                      }
-                      ${lesson.status === "locked" ? "cursor-not-allowed opacity-30 grayscale" : "cursor-pointer"}
-                      transition-colors duration-150
+                      rounded-full
+                      bg-secondary/40 hover:bg-secondary/50 shadow-secondary/20
+                      ${lesson.status === "current" ? "ring-1 ring-secondary/50" : ""}
+                      cursor-pointer transition-colors duration-150
                     `}
                     onClick={() => handleLessonClick(lesson)}
-                    disabled={lesson.status === "locked"}
                   >
                     <div className="flex items-center justify-center text-secondary-foreground">
                       {lesson.status === "completed" ? (
                         <CheckCircle className="h-6 w-6" />
-                      ) : lesson.status === "locked" ? (
-                        <Lock className="h-6 w-6 opacity-60" />
                       ) : lesson.status === "current" ? (
                         <Play className="h-6 w-6" />
                       ) : (
@@ -166,22 +159,18 @@ export default function SkillTree() {
                     </div>
                   </Button>
 
-                  {/* Add connecting line to next lesson */}
-                  {index < lessons.length - 1 && (
-                    <div className="absolute top-full left-1/2 w-1 h-6 bg-secondary/40 transform -translate-x-1/2 hover:bg-secondary/60 transition-colors duration-200"></div>
-                  )}
 
                   {/* Add diagonal placeholder images */}
                   {index % 3 === 1 && (
-                    <div className="absolute -top-2 -right-8 transform rotate-12">
-                      <div className="w-6 h-6 bg-secondary/20 border-2 border-secondary/40 rounded-full flex items-center justify-center">
+                    <div className="absolute -top-2 -right-8 transform rotate-12 cursor-pointer">
+                      <div className="w-6 h-6 bg-secondary/20 border-2 border-secondary/40 rounded-full flex items-center justify-center hover:bg-secondary/25 transition-colors duration-150">
                         <div className="w-3 h-3 bg-secondary/60 rounded-full"></div>
                       </div>
                     </div>
                   )}
                   {index % 3 === 2 && (
-                    <div className="absolute -top-2 -left-8 transform -rotate-12">
-                      <div className="w-6 h-6 bg-secondary/20 border-2 border-secondary/40 rounded-full flex items-center justify-center">
+                    <div className="absolute -top-2 -left-8 transform -rotate-12 cursor-pointer">
+                      <div className="w-6 h-6 bg-secondary/20 border-2 border-secondary/40 rounded-full flex items-center justify-center hover:bg-secondary/25 transition-colors duration-150">
                         <div className="w-3 h-3 bg-secondary/60 rounded-full"></div>
                       </div>
                     </div>
