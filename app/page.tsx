@@ -230,18 +230,13 @@ export default function Home() {
           href="/ai-chat"
           className="inline-block transition-transform hover:scale-105 cursor-pointer group"
         >
-          <div className="relative">
-            <Image
-              src="/wemo-mascot.png"
-              alt="WeMoney Mascot - Click to start chat"
-              width={120}
-              height={120}
-              className="drop-shadow-lg group-hover:drop-shadow-xl transition-all"
-            />
-            <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-primary text-primary-foreground px-4 py-2 rounded-full text-sm font-semibold font-sans shadow-lg">
-              Chat with AI
-            </div>
-          </div>
+          <Image
+            src="/wemo-mascot.png"
+            alt="WeMoney Mascot - Click to start chat"
+            width={120}
+            height={120}
+            className="drop-shadow-lg group-hover:drop-shadow-xl transition-all cursor-pointer"
+          />
         </Link>
       </div>
     </div>
