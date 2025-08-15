@@ -7,6 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
+import { BottomNavigation } from "@/components/bottom-navigation";
 import {
   BookOpen,
   Clock,
@@ -481,6 +482,7 @@ export default function ContentHub() {
           </div>
         </section>
       </div>
+      <BottomNavigation />
     </div>
   );
 }
