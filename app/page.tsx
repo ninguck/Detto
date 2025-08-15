@@ -7,6 +7,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
+import { BottomNavigation } from "@/components/bottom-navigation";
 import {
   BookOpen,
   Trophy,
@@ -256,10 +257,12 @@ export default function Home() {
 
         {/* Quick Actions */}
         <div className="grid grid-cols-2 gap-4">
-          <Button className="h-20 bg-gradient-to-br from-green-600 to-emerald-700 hover:from-green-700 hover:to-emerald-800 text-white flex-col gap-2 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 group">
-            <BookOpen className="w-6 h-6 group-hover:animate-bounce" />
-            <span className="text-sm font-medium font-sans">Learn</span>
-          </Button>
+          <Link href="/content" className="w-full">
+            <Button className="w-full h-20 bg-gradient-to-br from-green-600 to-emerald-700 hover:from-green-700 hover:to-emerald-800 text-white flex-col gap-2 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 group">
+              <BookOpen className="w-6 h-6 group-hover:animate-bounce" />
+              <span className="text-sm font-medium font-sans">Learn</span>
+            </Button>
+          </Link>
           <Button
             variant="outline"
             className="h-20 border-teal-200 hover:bg-gradient-to-br hover:from-teal-50 hover:to-cyan-50 flex-col gap-2 bg-card/80 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 group"
@@ -466,39 +469,7 @@ export default function Home() {
         </Card>
       </div>
 
-      {/* Bottom Navigation Bar */}
-      <div className="fixed bottom-0 left-0 right-0 z-40 bg-card border-t border-border shadow-lg">
-        <div className="max-w-4xl mx-auto px-6 py-4">
-          <div className="grid grid-cols-5 gap-4 items-center">
-            {/* Home Tab */}
-            <Button variant="ghost" className="text-card-foreground hover:text-primary hover:bg-primary/10 font-medium font-sans">
-              Home
-            </Button>
-
-            {/* Courses Tab */}
-            <Button variant="ghost" className="text-card-foreground hover:text-primary hover:bg-primary/10 font-medium font-sans">
-              Courses
-            </Button>
-
-            {/* Centered Learn Button */}
-            <a href="/game" className="col-span-1 flex justify-center">
-              <Button className="bg-primary text-primary-foreground hover:bg-primary/90 font-bold text-lg px-6 py-2 shadow-lg font-sans">
-                Learn
-              </Button>
-            </a>
-
-            {/* Leaderboard Tab */}
-            <Button variant="ghost" className="text-card-foreground hover:text-primary hover:bg-primary/10 font-medium font-sans">
-              Ranks
-            </Button>
-
-            {/* Progress Tab */}
-            <Button variant="ghost" className="text-card-foreground hover:text-primary hover:bg-primary/10 font-medium font-sans">
-              Progress
-            </Button>
-          </div>
-        </div>
-      </div>
+      <BottomNavigation />
     </div>
   );
 }
