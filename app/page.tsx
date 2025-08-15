@@ -183,7 +183,7 @@ export default function Home() {
       </div>
 
       {/* Main Content */}
-      <div className="max-w-4xl mx-auto px-6 py-6 space-y-6">
+      <div className="max-w-4xl mx-auto px-6 py-6 pb-32 space-y-6">
         {/* Daily Progress Card */}
         <Card className="border-green-200 bg-card/90 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02]">
           <CardContent className="p-4">
