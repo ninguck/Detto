@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "fullName": "Sarah Johnson",
+    "points": 2850,
+    "rank": 1
+  },
+  {
+    "id": 2,
+    "fullName": "Michael Chen",
+    "points": 2745,
+    "rank": 2
+  },
+  {
+    "id": 3,
+    "fullName": "Emily Rodriguez",
+    "points": 2620,
+    "rank": 3
+  },
+  {
+    "id": 4,
+    "fullName": "David Thompson",
+    "points": 2580,
+    "rank": 4
+  },
+  {
+    "id": 5,
+    "fullName": "Jessica Williams",
+    "points": 2475,
+    "rank": 5
+  },
+  {
+    "id": 6,
+    "fullName": "Ryan Martinez",
+    "points": 2350,
+    "rank": 6
+  },
+  {
+    "id": 7,
+    "fullName": "Amanda Davis",
+    "points": 2290,
+    "rank": 7
+  },
+  {
+    "id": 8,
+    "fullName": "Kevin Anderson",
+    "points": 2180,
+    "rank": 8
+  },
+  {
+    "id": 9,
+    "fullName": "Lauren Taylor",
+    "points": 2125,
+    "rank": 9
+  },
+  {
+    "id": 10,
+    "fullName": "Christopher Brown",
+    "points": 2050,
+    "rank": 10
+  },
+  {
+    "id": 11,
+    "fullName": "Natalie Wilson",
+    "points": 1975,
+    "rank": 11
+  },
+  {
+    "id": 12,
+    "fullName": "Daniel Garcia",
+    "points": 1890,
+    "rank": 12
+  },
+  {
+    "id": 13,
+    "fullName": "Rachel Moore",
+    "points": 1825,
+    "rank": 13
+  },
+  {
+    "id": 14,
+    "fullName": "Brandon Lee",
+    "points": 1760,
+    "rank": 14
+  },
+  {
+    "id": 15,
+    "fullName": "Olivia Clark",
+    "points": 1695,
+    "rank": 15
+  }
+]
