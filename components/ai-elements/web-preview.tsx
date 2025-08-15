@@ -9,7 +9,7 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from '@/components/ui/collapsible';
-import { Input } from '@/components/ui/input';
+// import { Input } from '@/components/ui/input';
 import {
   Tooltip,
   TooltipContent,
@@ -124,14 +124,14 @@ export const WebPreviewNavigationButton = ({
   </TooltipProvider>
 );
 
-export type WebPreviewUrlProps = ComponentProps<typeof Input>;
+// export type WebPreviewUrlProps = ComponentProps<typeof Input>;
 
 export const WebPreviewUrl = ({
   value,
   onChange,
   onKeyDown,
   ...props
-}: WebPreviewUrlProps) => {
+}: any) => {
   const { url, setUrl } = useWebPreview();
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -143,7 +143,7 @@ export const WebPreviewUrl = ({
   };
 
   return (
-    <Input
+    <input
       className="flex-1 h-8 text-sm"
       placeholder="Enter URL..."
       value={value ?? url}
