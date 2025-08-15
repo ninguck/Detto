@@ -1,2 +1,2 @@
-# Detto
+# Debto
 Hackathon
