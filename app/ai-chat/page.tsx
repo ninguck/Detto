@@ -64,7 +64,7 @@ const ChatBotDemo = () => {
           parts: [
             {
               type: "text",
-              text: `Hey Nick! 👋`,
+              text: `Hey Mark! 👋`,
             },
           ],
         },
