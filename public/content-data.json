@@ -1,0 +1,196 @@
+{
+  "dailyGoal": {
+    "day": 1,
+    "title": "Master Debt Payoff Strategies",
+    "description": "Learn the proven Avalanche and Snowball methods to eliminate debt faster",
+    "type": "article",
+    "readingTime": "3 min read",
+    "completed": false,
+    "content": {
+      "title": "The Power of Strategic Debt Payoff",
+      "summary": "When it comes to paying off debt, having a strategy isn't just helpful—it's essential. Without a plan, you might feel like you're throwing money into a black hole with no progress to show for it.",
+      "sections": [
+        {
+          "heading": "The Two Proven Champions",
+          "content": "**🏔️ Avalanche Method**\nPay minimums on all debts, then attack the highest interest rate first. This saves you the most money mathematically.\n\n*Example: Credit card at 22% APR gets priority over student loan at 6% APR*\n\n**❄️ Snowball Method**\nPay minimums on all debts, then attack the smallest balance first. This builds momentum through quick wins.\n\n*Example: $500 store card gets eliminated before $15,000 car loan*"
+        },
+        {
+          "heading": "Which Should You Choose?",
+          "content": "- Choose **Avalanche** if you're motivated by saving money and can stick to long-term plans\n- Choose **Snowball** if you need quick wins to stay motivated\n\n**The Secret Sauce:** Consistency beats perfection. The best method is the one you'll actually follow through with.\n\n**Pro Tip:** Combine both! Start with one small debt (snowball) to build confidence, then switch to avalanche for maximum savings."
+        }
+      ]
+    }
+  },
+  "weeklyProgress": [
+    {
+      "day": 1,
+      "dayName": "Mon",
+      "title": "Debt Strategies",
+      "completed": true,
+      "current": true
+    },
+    {
+      "day": 2,
+      "dayName": "Tue",
+      "title": "Transaction Categories",
+      "completed": false,
+      "current": false
+    },
+    {
+      "day": 3,
+      "dayName": "Wed",
+      "title": "Expense Killers",
+      "completed": false,
+      "current": false
+    },
+    {
+      "day": 4,
+      "dayName": "Thu",
+      "title": "Progress Check",
+      "completed": false,
+      "current": false
+    },
+    {
+      "day": 5,
+      "dayName": "Fri",
+      "title": "Financial Vocab",
+      "completed": false,
+      "current": false
+    },
+    {
+      "day": 6,
+      "dayName": "Sat",
+      "title": "Cutting Expenses",
+      "completed": false,
+      "current": false
+    },
+    {
+      "day": 7,
+      "dayName": "Sun",
+      "title": "Goal Setting",
+      "completed": false,
+      "current": false
+    }
+  ],
+  "articles": [
+    {
+      "id": 1,
+      "title": "The Power of Strategic Debt Payoff",
+      "description": "Learn the proven Avalanche and Snowball methods",
+      "readingTime": "3 min read",
+      "category": "Debt Strategy",
+      "difficulty": "Beginner",
+      "completed": true,
+      "image": "/articles/debt-strategy.svg"
+    },
+    {
+      "id": 2,
+      "title": "Small Leaks Sink Big Ships",
+      "description": "Identify and eliminate debt killer expenses",
+      "readingTime": "2 min read",
+      "category": "Expense Tracking",
+      "difficulty": "Beginner",
+      "completed": false,
+      "image": "/articles/expense-leaks.svg"
+    },
+    {
+      "id": 3,
+      "title": "APR: The Number That Rules Your Debt",
+      "description": "Master financial vocabulary for better decisions",
+      "readingTime": "2 min read",
+      "category": "Financial Education",
+      "difficulty": "Intermediate",
+      "completed": false,
+      "image": "/articles/apr-guide.svg"
+    },
+    {
+      "id": 4,
+      "title": "The Art of Smart Spending Cuts",
+      "description": "Reduce expenses without sacrificing happiness",
+      "readingTime": "3 min read",
+      "category": "Budgeting",
+      "difficulty": "Intermediate",
+      "completed": false,
+      "image": "/articles/smart-cuts.svg"
+    }
+  ],
+    "quizzes": [
+    {
+      "id": 1,
+      "title": "Debt Payoff Strategies Quiz",
+      "description": "Test your knowledge of Avalanche vs Snowball methods",
+      "questions": 3,
+      "difficulty": "Beginner",
+      "completed": true,
+      "score": 85,
+      "image": "/quizzes/debt-strategies.svg",
+      "day": 1
+    },
+    {
+      "id": 2,
+      "title": "Categorize Your Spending",
+      "description": "Practice sorting transactions into categories",
+      "questions": 3,
+      "difficulty": "Beginner", 
+      "completed": false,
+      "score": null,
+      "image": "/quizzes/categorization.svg",
+      "day": 2
+    },
+    {
+      "id": 3,
+      "title": "Identify Your Debt Killers",
+      "description": "Find the expenses that slow your progress",
+      "questions": 3,
+      "difficulty": "Beginner",
+      "completed": false,
+      "score": null,
+      "image": "/quizzes/debt-killers.svg",
+      "day": 3
+    },
+    {
+      "id": 4,
+      "title": "Celebrate Your Progress",
+      "description": "Track your achievements and stay motivated",
+      "questions": 3,
+      "difficulty": "Beginner",
+      "completed": false,
+      "score": null,
+      "image": "/quizzes/progress-check.svg",
+      "day": 4
+    },
+    {
+      "id": 5,
+      "title": "Master Financial Terms",
+      "description": "Learn essential vocabulary for debt freedom",
+      "questions": 3,
+      "difficulty": "Intermediate",
+      "completed": false,
+      "score": null,
+      "image": "/quizzes/vocab-builder.svg",
+      "day": 5
+    },
+    {
+      "id": 6,
+      "title": "Expense Cutting Challenge",
+      "description": "Plan your strategy to reduce spending",
+      "questions": 3,
+      "difficulty": "Intermediate",
+      "completed": false,
+      "score": null,
+      "image": "/quizzes/expense-cutting.svg",
+      "day": 6
+    },
+    {
+      "id": 7,
+      "title": "Set Your Payment Commitment",
+      "description": "Make your debt-free goal official",
+      "questions": 3,
+      "difficulty": "Intermediate",
+      "completed": false,
+      "score": null,
+      "image": "/quizzes/commitment.svg",
+      "day": 7
+    }
+  ]
+}
