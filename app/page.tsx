@@ -329,15 +329,13 @@ export default function Home() {
               <span className="text-sm font-medium font-sans">Courses</span>
             </Button>
           </Link>
-          <Button
-            variant="outline"
-            className="h-20 border-teal-200 hover:bg-gradient-to-br hover:from-teal-50 hover:to-cyan-50 flex-col gap-2 bg-card/80 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 group"
-          >
-            <Target className="w-6 h-6 text-teal-600 group-hover:animate-pulse" />
-            <Link href="/progress" className="text-sm font-medium text-teal-700 font-sans">
-              Track Debt
-            </Link>
-          </Button>
+          <Link href="/progress" className="w-full">
+            <Button className="w-full h-20 bg-background hover:bg-cyan-50 border-teal-200 border text-teal-700 flex-col gap-2 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 group">
+              <Target className="w-6 h-6 group-hover:animate-bounce" />
+              <span className="text-sm font-medium font-sans">Track Debt</span>
+            </Button>
+          </Link>
+
         </div>
 
         {/* Weekly Progress */}

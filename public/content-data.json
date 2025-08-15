@@ -25,7 +25,7 @@
     {
       "day": 1,
       "dayName": "Mon",
-      "title": "Debt Strategies",
+      "title": "Understanding debt consolidation",
       "prefix": "Article",
       "estimatedTime": "3 min",
       "streakDay": 1,
@@ -37,7 +37,7 @@
     {
       "day": 2,
       "dayName": "Tue",
-      "title": "Transaction Categories",
+      "title": "Yesterday in review",
       "prefix": "Task",
       "estimatedTime": "5 min",
       "streakDay": 2,
@@ -49,7 +49,7 @@
     {
       "day": 3,
       "dayName": "Wed",
-      "title": "Expense Killers",
+      "title": "Make a (small) early payment",
       "prefix": "Article",
       "estimatedTime": "2 min",
       "streakDay": 3,
@@ -62,7 +62,7 @@
       "day": 4,
       "dayName": "Thu",
       "title": "Progress Check",
-      "prefix": "Challenge",
+      "prefix": "Make an early payment",
       "estimatedTime": "10 min",
       "streakDay": 4,
       "completed": false,
@@ -73,7 +73,7 @@
     {
       "day": 5,
       "dayName": "Fri",
-      "title": "Financial Vocab",
+      "title": "Increase a regular payment by $5",
       "prefix": "Article",
       "estimatedTime": "2 min",
       "streakDay": 5,
@@ -85,8 +85,8 @@
     {
       "day": 6,
       "dayName": "Sat",
-      "title": "Cutting Expenses",
-      "prefix": "Article",
+      "title": "Principle vs Interest",
+      "prefix": "Quiz",
       "estimatedTime": "3 min",
       "streakDay": 6,
       "completed": false,
@@ -97,7 +97,7 @@
     {
       "day": 7,
       "dayName": "Sun",
-      "title": "Goal Setting",
+      "title": "Your week in review",
       "prefix": "Quiz",
       "estimatedTime": "8 min",
       "streakDay": 7,
