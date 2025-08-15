@@ -271,13 +271,20 @@ export default function Home() {
 
         {/* AI Chat Card */}
         <Card className="border-accent/20 bg-gradient-to-r from-accent/10 to-secondary/10 shadow-lg">
-          <CardContent className="p-6">
-            {/* Title and Mascot Row */}
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-lg font-semibold text-card-foreground font-sans">
-                Need Financial Help?
-              </h3>
-              <div className="ml-4">
+          <CardContent className="p-8">
+            {/* Title at Top */}
+            <h3 className="text-xl font-bold text-card-foreground font-sans mb-6 text-center">
+              Need Financial Guidance?
+            </h3>
+            
+            {/* Description and Mascot Row */}
+            <div className="flex items-center justify-between mb-8">
+              <div className="flex-1 mr-8">
+                <p className="text-muted-foreground font-sans text-base leading-relaxed">
+                  Get personalized AI assistance for your financial questions and debt management. Our friendly mascot is here to help guide you.
+                </p>
+              </div>
+              <div className="flex-shrink-0">
                 <Link
                   href="/ai-chat"
                   className="inline-block transition-transform hover:scale-105 cursor-pointer group"
@@ -293,15 +300,10 @@ export default function Home() {
               </div>
             </div>
             
-            {/* Description and Button - Full Width */}
-            <div className="w-full">
-              <p className="text-muted-foreground font-sans mb-4">
-                Click on our friendly mascot to get personalized AI assistance with your financial questions and debt management journey.
-              </p>
-              <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-medium font-sans">
-                Chat Now
-              </Button>
-            </div>
+            {/* Chat Now Button - Full Width */}
+            <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-semibold text-base py-3">
+              Start Chatting Now
+            </Button>
           </CardContent>
         </Card>
 
