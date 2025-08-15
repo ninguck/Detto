@@ -57,7 +57,7 @@ const ChatBotDemo = () => {
   // Add initial welcome message when component mounts
   useEffect(() => {
     if (!hasInitialized && messages.length === 0) {
-            setMessages([
+      setMessages([
         {
           id: "welcome-message-1",
           role: "assistant",
@@ -170,6 +170,65 @@ const ChatBotDemo = () => {
           </ConversationContent>
           <ConversationScrollButton />
         </Conversation>
+
+        {/* Example prompt buttons - only show when no user messages yet */}
+        {!messages.some((msg) => msg.role === "user") && (
+          <div className="flex gap-3 overflow-x-auto py-3 scrollbar-hide">
+            <button
+              className="flex-shrink-0 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full text-sm font-medium transition-colors whitespace-nowrap"
+              onClick={() => {
+                const exampleText =
+                  "How should I prioritize paying off my debts?";
+                sendMessage(
+                  { text: exampleText },
+                  {
+                    body: {
+                      model: model,
+                      webSearch: webSearch,
+                    },
+                  }
+                );
+              }}
+            >
+              How should I prioritize paying off my debts?
+            </button>
+            <button
+              className="flex-shrink-0 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full text-sm font-medium transition-colors whitespace-nowrap"
+              onClick={() => {
+                const exampleText = "What's my highest payment?";
+                sendMessage(
+                  { text: exampleText },
+                  {
+                    body: {
+                      model: model,
+                      webSearch: webSearch,
+                    },
+                  }
+                );
+              }}
+            >
+              What's my highest payment?
+            </button>
+            <button
+              className="flex-shrink-0 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full text-sm font-medium transition-colors whitespace-nowrap"
+              onClick={() => {
+                const exampleText =
+                  "How can I better contribute to my debt repayment?";
+                sendMessage(
+                  { text: exampleText },
+                  {
+                    body: {
+                      model: model,
+                      webSearch: webSearch,
+                    },
+                  }
+                );
+              }}
+            >
+              How can I better contribute to my debt repayment?
+            </button>
+          </div>
+        )}
 
         <PromptInput onSubmit={handleSubmit} className="mt-4">
           <PromptInputTextarea
