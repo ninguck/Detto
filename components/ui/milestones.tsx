@@ -1,4 +1,3 @@
-// components/ui/milestones.tsx
 'use client';
 
 import React from "react";
@@ -21,7 +20,7 @@ export function MilestoneBoard({ milestones, title, className }: MilestoneBoardP
   return (
     <div className={clsx("w-full", className)}>
       {title && (
-        <h1 className="text-xl font-bold mb-4 text-foreground">{title}</h1>
+        <h1 className="text-xl font-bold mb-3 text-foreground">{title}</h1>
       )}
 
       <div className="space-y-2">
