@@ -1,0 +1,119 @@
+{
+  "user": {
+    "id": "user_001",
+    "name": "Nick",
+    "email": "alex@example.com",
+    "avatar": "/wemo-mascot.png",
+    "joinDate": "2024-01-15",
+    "timezone": "America/New_York"
+  },
+  "stats": {
+    "currentStreak": 7,
+    "totalPoints": 1250,
+    "totalLessons": 12,
+    "lessonsCompleted": 8,
+    "achievementsUnlocked": 5,
+    "debtReduced": 2500,
+    "currentDebt": 15000
+  },
+  "progress": {
+    "dailyGoals": {
+      "total": 3,
+      "completed": 2,
+      "percentage": 67,
+      "tasks": [
+        {
+          "id": "task_001",
+          "name": "Complete daily lesson",
+          "completed": true,
+          "xpReward": 25
+        },
+        {
+          "id": "task_002",
+          "name": "Update debt progress",
+          "completed": true,
+          "xpReward": 15
+        },
+        {
+          "id": "task_003",
+          "name": "Take quiz",
+          "completed": false,
+          "xpReward": 50
+        }
+      ]
+    },
+    "currentLesson": {
+      "id": "lesson_001",
+      "title": "Interest Rates 101",
+      "description": "Learn how interest affects your debt",
+      "progress": 30,
+      "totalModules": 5,
+      "completedModules": 1,
+      "icon": "DollarSign"
+    }
+  },
+  "achievements": [
+    {
+      "id": "ach_001",
+      "name": "First Lesson",
+      "description": "Completed your first financial lesson",
+      "icon": "Trophy",
+      "unlocked": true,
+      "unlockDate": "2024-01-16",
+      "xpReward": 100
+    },
+    {
+      "id": "ach_002",
+      "name": "Debt Tracker",
+      "description": "Started tracking your debt progress",
+      "icon": "TrendingUp",
+      "unlocked": true,
+      "unlockDate": "2024-01-18",
+      "xpReward": 75
+    },
+    {
+      "id": "ach_003",
+      "name": "Streak Master",
+      "description": "Maintain a 7-day learning streak",
+      "icon": "Flame",
+      "unlocked": false,
+      "xpReward": 200,
+      "progress": 7,
+      "target": 7
+    }
+  ],
+  "friends": [
+    {
+      "id": "friend_001",
+      "name": "Sarah",
+      "avatar": "S",
+      "lastActivity": "2 hours ago",
+      "activity": "completed 'Budgeting Basics'",
+      "xpGained": 50
+    },
+    {
+      "id": "friend_002",
+      "name": "Mike",
+      "avatar": "M",
+      "lastActivity": "5 hours ago",
+      "activity": "reached 10-day streak!",
+      "xpGained": 100
+    }
+  ],
+  "affirmations": [
+    "Every step forward is progress, no matter how small. You're building a brighter financial future.",
+    "Your debt-free journey is a marathon, not a sprint. Stay consistent and trust the process.",
+    "You have the power to change your financial story. Today is another opportunity to make smart choices.",
+    "Small daily improvements compound into massive long-term results. Keep going!",
+    "Financial freedom is within your reach. Every payment brings you closer to your goals.",
+    "You're not alone on this journey. Every successful person started exactly where you are now.",
+    "Your future self will thank you for the decisions you make today. Choose wisely.",
+    "Debt is temporary, but the lessons you learn about money will last a lifetime."
+  ],
+  "preferences": {
+    "theme": "light",
+    "notifications": true,
+    "dailyReminders": true,
+    "reminderTime": "09:00"
+  }
+}

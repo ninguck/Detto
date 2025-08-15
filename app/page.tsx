@@ -20,10 +20,70 @@ import {
   SunIcon,
 } from "lucide-react";
 
+interface UserData {
+  user: {
+    name: string;
+  };
+  stats: {
+    currentStreak: number;
+    totalPoints: number;
+  };
+  progress: {
+    dailyGoals: {
+      total: number;
+      completed: number;
+      percentage: number;
+      tasks: Array<{
+        id: string;
+        name: string;
+        completed: boolean;
+        xpReward: number;
+      }>;
+    };
+    currentLesson: {
+      title: string;
+      description: string;
+      progress: number;
+    };
+  };
+  achievements: Array<{
+    id: string;
+    name: string;
+    icon: string;
+    unlocked: boolean;
+  }>;
+  friends: Array<{
+    id: string;
+    name: string;
+    avatar: string;
+    lastActivity: string;
+    activity: string;
+    xpGained: number;
+  }>;
+  affirmations: string[];
+}
+
 export default function Home() {
   const [currentTime, setCurrentTime] = useState(new Date());
-  const [streak, setStreak] = useState(7);
-  const [points, setPoints] = useState(1250);
+  const [userData, setUserData] = useState<UserData | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  // Fetch user data on component mount
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const response = await fetch('/user.json');
+        const data = await response.json();
+        setUserData(data);
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUserData();
+  }, []);
 
   // Update time every minute
   useEffect(() => {
@@ -41,36 +101,47 @@ export default function Home() {
   };
 
   const getTimeString = () => {
-    return currentTime.toLocaleTimeString("en-US", {
-      hour: "numeric",
-      minute: "2-digit",
-      hour12: true,
+    return currentTime.toLocaleTimeString('en-US', { 
+      hour: 'numeric', 
+      minute: '2-digit',
+      hour12: true 
     });
   };
 
   const getDateString = () => {
-    return currentTime.toLocaleDateString("en-US", {
-      weekday: "long",
-      month: "long",
-      day: "numeric",
+    return currentTime.toLocaleDateString('en-US', { 
+      weekday: 'long', 
+      month: 'long', 
+      day: 'numeric' 
     });
   };
 
-  const dailyAffirmations = [
-    "Every step forward is progress, no matter how small. You're building a brighter financial future.",
-    "Your debt-free journey is a marathon, not a sprint. Stay consistent and trust the process.",
-    "You have the power to change your financial story. Today is another opportunity to make smart choices.",
-    "Small daily improvements compound into massive long-term results. Keep going!",
-    "Financial freedom is within your reach. Every payment brings you closer to your goals.",
-    "You're not alone on this journey. Every successful person started exactly where you are now.",
-    "Your future self will thank you for the decisions you make today. Choose wisely.",
-    "Debt is temporary, but the lessons you learn about money will last a lifetime.",
-  ];
-
-  const [currentAffirmation] = useState(() => {
+  const getCurrentAffirmation = () => {
+    if (!userData) return "";
     const today = new Date().getDate();
-    return dailyAffirmations[today % dailyAffirmations.length];
-  });
+    return userData.affirmations[today % userData.affirmations.length];
+  };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-background text-foreground flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+          <p className="text-muted-foreground">Loading your financial journey...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!userData) {
+    return (
+      <div className="min-h-screen bg-background text-foreground flex items-center justify-center">
+        <div className="text-center">
+          <p className="text-muted-foreground">Unable to load user data</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -84,7 +155,7 @@ export default function Home() {
               </div>
               <div>
                 <h2 className="text-lg font-bold text-card-foreground font-sans">
-                  {getGreeting()}, Alex!
+                  {getGreeting()}, {userData.user.name}!
                 </h2>
                 <p className="text-xs text-muted-foreground font-sans">
                   {getDateString()} • {getTimeString()}
@@ -94,15 +165,11 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row items-end sm:items-center gap-2">
               <div className="flex items-center gap-1 bg-gradient-to-r from-yellow-100 to-orange-100 px-3 py-2 rounded-full shadow-sm animate-pulse">
                 <Flame className="w-4 h-4 text-orange-600" />
-                <span className="text-sm font-bold text-orange-700 font-sans">
-                  {streak}
-                </span>
+                <span className="text-sm font-bold text-orange-700 font-sans">{userData.stats.currentStreak}</span>
               </div>
               <div className="flex items-center gap-1 bg-gradient-to-br from-green-100 to-emerald-100 px-3 py-2 rounded-full shadow-sm">
                 <Star className="w-4 h-4 text-green-600" />
-                <span className="text-sm font-bold text-green-700 font-sans">
-                  {points.toLocaleString()}
-                </span>
+                <span className="text-sm font-bold text-green-700 font-sans">{userData.stats.totalPoints.toLocaleString()}</span>
                 <Sparkles className="w-3 h-3 text-yellow-500 animate-bounce" />
               </div>
             </div>
@@ -116,75 +183,60 @@ export default function Home() {
         <Card className="border-green-200 bg-card/90 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02]">
           <CardContent className="p-4">
             <div className="flex items-center justify-between mb-3">
-              <h2 className="font-semibold text-card-foreground font-sans">
-                Today's Progress
-              </h2>
+              <h2 className="font-semibold text-card-foreground font-sans">Today's Progress</h2>
               <Badge
                 variant="secondary"
                 className="bg-gradient-to-r from-green-100 to-emerald-100 text-green-700 animate-pulse"
               >
-                2/3 Complete
+                {userData.progress.dailyGoals.completed}/{userData.progress.dailyGoals.total} Complete
               </Badge>
             </div>
             <div className="mb-4">
               <div className="flex items-center justify-between mb-2">
-                <span className="text-sm text-muted-foreground font-sans">
-                  Daily Goals
-                </span>
-                <span className="text-sm font-semibold text-green-600 font-sans">
-                  67%
-                </span>
+                <span className="text-sm text-muted-foreground font-sans">Daily Goals</span>
+                <span className="text-sm font-semibold text-green-600 font-sans">{userData.progress.dailyGoals.percentage}%</span>
               </div>
-              <Progress value={67} className="h-3" />
+              <Progress value={userData.progress.dailyGoals.percentage} className="h-3" />
             </div>
             <div className="space-y-2">
-              <div className="flex items-center gap-2 text-sm p-2 rounded-lg bg-green-50 border border-green-200">
-                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                <span className="text-card-foreground font-sans">
-                  Complete daily lesson
-                </span>
-                <span className="text-green-600 ml-auto font-bold font-sans">
-                  ✓
-                </span>
-              </div>
-              <div className="flex items-center gap-2 text-sm p-2 rounded-lg bg-green-50 border border-green-200">
-                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                <span className="text-card-foreground font-sans">
-                  Update debt progress
-                </span>
-                <span className="text-green-600 ml-auto font-bold font-sans">
-                  ✓
-                </span>
-              </div>
-              <div className="flex items-center gap-2 text-sm p-2 rounded-lg bg-muted border border-border hover:bg-yellow-50 hover:border-yellow-200 transition-colors">
-                <div className="w-2 h-2 bg-muted-foreground rounded-full"></div>
-                <span className="text-muted-foreground font-sans">
-                  Take quiz
-                </span>
-                <Badge className="bg-yellow-100 text-yellow-700 text-xs ml-auto">
-                  +50 XP
-                </Badge>
-              </div>
+              {userData.progress.dailyGoals.tasks.map((task) => (
+                <div 
+                  key={task.id}
+                  className={`flex items-center gap-2 text-sm p-2 rounded-lg border transition-colors ${
+                    task.completed 
+                      ? 'bg-green-50 border-green-200' 
+                      : 'bg-muted border-border hover:bg-yellow-50 hover:border-yellow-200'
+                  }`}
+                >
+                  <div className={`w-2 h-2 rounded-full ${
+                    task.completed ? 'bg-green-500 animate-pulse' : 'bg-muted-foreground'
+                  }`}></div>
+                  <span className={task.completed ? 'text-card-foreground' : 'text-muted-foreground'}>
+                    {task.name}
+                  </span>
+                  {task.completed ? (
+                    <span className="text-green-600 ml-auto font-bold font-sans">✓</span>
+                  ) : (
+                    <Badge className="bg-yellow-100 text-yellow-700 text-xs ml-auto">+{task.xpReward} XP</Badge>
+                  )}
+                </div>
+              ))}
             </div>
           </CardContent>
         </Card>
 
         {/* Quick Actions */}
         <div className="grid grid-cols-2 gap-4">
-          <Link href="/content">
-            <Button className="w-full h-20 bg-gradient-to-br from-green-600 to-emerald-700 hover:from-green-700 hover:to-emerald-800 text-white flex-col gap-2 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 group">
-              <BookOpen className="w-6 h-6 group-hover:animate-bounce" />
-              <span className="text-sm font-medium font-sans">Learn</span>
-            </Button>
-          </Link>
+          <Button className="h-20 bg-gradient-to-br from-green-600 to-emerald-700 hover:from-green-700 hover:to-emerald-800 text-white flex-col gap-2 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 group">
+            <BookOpen className="w-6 h-6 group-hover:animate-bounce" />
+            <span className="text-sm font-medium font-sans">Learn</span>
+          </Button>
           <Button
             variant="outline"
             className="h-20 border-teal-200 hover:bg-gradient-to-br hover:from-teal-50 hover:to-cyan-50 flex-col gap-2 bg-card/80 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 group"
           >
             <Target className="w-6 h-6 text-teal-600 group-hover:animate-pulse" />
-            <span className="text-sm font-medium text-teal-700 font-sans">
-              Track Debt
-            </span>
+            <span className="text-sm font-medium text-teal-700 font-sans">Track Debt</span>
           </Button>
         </div>
 
@@ -196,20 +248,14 @@ export default function Home() {
                 <DollarSign className="w-6 h-6 text-teal-600" />
               </div>
               <div>
-                <h3 className="font-semibold text-card-foreground font-sans">
-                  Interest Rates 101
-                </h3>
-                <p className="text-sm text-muted-foreground font-sans">
-                  Learn how interest affects your debt
-                </p>
+                <h3 className="font-semibold text-card-foreground font-sans">{userData.progress.currentLesson.title}</h3>
+                <p className="text-sm text-muted-foreground font-sans">{userData.progress.currentLesson.description}</p>
               </div>
             </div>
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <Progress value={30} className="w-20 h-2" />
-                <span className="text-sm text-muted-foreground font-medium font-sans">
-                  30%
-                </span>
+                <Progress value={userData.progress.currentLesson.progress} className="w-20 h-2" />
+                <span className="text-sm text-muted-foreground font-medium font-sans">{userData.progress.currentLesson.progress}%</span>
               </div>
               <Button
                 size="sm"
@@ -225,44 +271,75 @@ export default function Home() {
         <Card className="border-yellow-200 bg-card/90 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300">
           <CardContent className="p-4">
             <div className="flex items-center justify-between mb-3">
-              <h3 className="font-semibold text-card-foreground font-sans">
-                Recent Achievements
-              </h3>
-              <Button
-                variant="ghost"
-                size="sm"
-                className="text-yellow-600 hover:bg-yellow-50"
-              >
+              <h3 className="font-semibold text-card-foreground font-sans">Recent Achievements</h3>
+              <Button variant="ghost" size="sm" className="text-yellow-600 hover:bg-yellow-50">
                 View All
               </Button>
             </div>
             <div className="flex gap-3">
-              <div className="flex flex-col items-center gap-1 group cursor-pointer">
-                <div className="w-12 h-12 bg-gradient-to-br from-yellow-100 to-amber-100 rounded-full flex items-center justify-center shadow-md group-hover:shadow-lg transition-all duration-300 group-hover:scale-110">
-                  <Trophy className="w-6 h-6 text-yellow-600 group-hover:animate-bounce" />
-                </div>
-                <span className="text-xs text-muted-foreground font-sans">
-                  First Lesson
-                </span>
-              </div>
-              <div className="flex flex-col items-center gap-1 group cursor-pointer">
-                <div className="w-12 h-12 bg-gradient-to-br from-green-100 to-emerald-100 rounded-full flex items-center justify-center shadow-md group-hover:shadow-lg transition-all duration-300 group-hover:scale-110">
-                  <TrendingUp className="w-6 h-6 text-green-600 group-hover:animate-pulse" />
-                </div>
-                <span className="text-xs text-muted-foreground font-sans">
-                  Debt Tracker
-                </span>
-              </div>
-              <div className="flex flex-col items-center gap-1 group cursor-pointer">
-                <div className="w-12 h-12 bg-muted rounded-full flex items-center justify-center border-2 border-dashed border-border shadow-md group-hover:shadow-lg transition-all duration-300 group-hover:scale-110 group-hover:border-yellow-300 group-hover:bg-yellow-50">
-                  <span className="text-muted-foreground group-hover:text-yellow-500 transition-colors">
-                    ?
+              {userData.achievements.slice(0, 3).map((achievement) => (
+                <div key={achievement.id} className="flex flex-col items-center gap-1 group cursor-pointer">
+                  <div className={`w-12 h-12 rounded-full flex items-center justify-center shadow-md group-hover:shadow-lg transition-all duration-300 group-hover:scale-110 ${
+                    achievement.unlocked 
+                      ? 'bg-gradient-to-br from-yellow-100 to-amber-100' 
+                      : 'bg-muted border-2 border-dashed border-border'
+                  }`}>
+                    {achievement.unlocked ? (
+                      <Trophy className="w-6 h-6 text-yellow-600 group-hover:animate-bounce" />
+                    ) : (
+                      <span className="text-muted-foreground group-hover:text-yellow-500 transition-colors">?</span>
+                    )}
+                  </div>
+                  <span className={`text-xs font-sans ${
+                    achievement.unlocked ? 'text-muted-foreground' : 'text-muted-foreground group-hover:text-yellow-600'
+                  }`}>
+                    {achievement.name}
                   </span>
                 </div>
-                <span className="text-xs text-muted-foreground group-hover:text-yellow-600 transition-colors font-sans">
-                  Next Goal
-                </span>
-              </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Friends Activity */}
+        <Card className="border-blue-200 bg-card/90 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300">
+          <CardContent className="p-4">
+            <div className="flex items-center justify-between mb-3">
+              <h3 className="font-semibold text-card-foreground font-sans">Friends Activity</h3>
+              <Button variant="ghost" size="sm" className="text-blue-600 hover:bg-blue-50">
+                <Users className="w-4 h-4" />
+              </Button>
+            </div>
+            <div className="space-y-3">
+              {userData.friends.map((friend, index) => (
+                <div key={friend.id} className={`flex items-center gap-3 p-3 rounded-lg border hover:shadow-md transition-all duration-300 ${
+                  index === 0 
+                    ? 'bg-gradient-to-r from-green-50 to-emerald-50 border-green-100' 
+                    : 'bg-gradient-to-r from-orange-50 to-yellow-50 border-orange-100'
+                }`}>
+                  <div className={`w-8 h-8 rounded-full flex items-center justify-center text-white text-sm font-semibold shadow-md ${
+                    index === 0 
+                      ? 'bg-gradient-to-br from-green-500 to-emerald-600' 
+                      : 'bg-gradient-to-br from-blue-500 to-indigo-600'
+                  }`}>
+                    {friend.avatar}
+                  </div>
+                  <div className="flex-1">
+                    <p className="text-sm text-card-foreground font-medium font-sans">{friend.activity}</p>
+                    <p className="text-xs text-muted-foreground font-sans">{friend.lastActivity}</p>
+                  </div>
+                  <Badge
+                    variant="secondary"
+                    className={`shadow-sm ${
+                      index === 0 
+                        ? 'bg-gradient-to-r from-green-100 to-emerald-100 text-green-700' 
+                        : 'bg-gradient-to-r from-orange-100 to-yellow-100 text-orange-700'
+                    }`}
+                  >
+                    +{friend.xpGained} XP
+                  </Badge>
+                </div>
+              ))}
             </div>
           </CardContent>
         </Card>
@@ -274,11 +351,9 @@ export default function Home() {
               <Sparkles className="w-6 h-6 text-white animate-pulse" />
             </div>
             <blockquote className="text-lg font-semibold text-card-foreground mb-2 font-serif italic">
-              "{currentAffirmation}"
+              "{getCurrentAffirmation()}"
             </blockquote>
-            <p className="text-sm text-muted-foreground font-sans">
-              Keep up the amazing progress, Alex!
-            </p>
+            <p className="text-sm text-muted-foreground font-sans">Keep up the amazing progress, {userData.user.name}!</p>
           </CardContent>
         </Card>
 
