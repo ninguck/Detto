@@ -44,6 +44,8 @@ interface WeekDay {
   title: string;
   completed: boolean;
   current: boolean;
+  hasQuiz: boolean;
+  quizCompleted: boolean;
 }
 
 interface ContentItem {
@@ -62,7 +64,6 @@ interface ContentItem {
 interface ContentData {
   dailyGoal: DailyGoal;
   weeklyProgress: WeekDay[];
-  articles: ContentItem[];
   quizzes: ContentItem[];
 }
 
@@ -238,16 +239,21 @@ export default function ContentHub() {
             </h2>
           </div>
 
-          <div className="flex items-center justify-center">
-            <div className="flex items-center gap-4 p-6 bg-card/50 rounded-2xl border border-border/50">
+          <div className="flex items-center justify-center px-4">
+            <div className="flex items-center gap-2 sm:gap-3 p-4 bg-card/50 rounded-2xl border border-border/50 overflow-x-auto">
               {contentData.weeklyProgress.map((day, index) => (
-                <div
+                <Link
                   key={day.day}
-                  className="flex flex-col items-center group cursor-pointer"
+                  href={day.hasQuiz && day.quizCompleted ? "/quiz/1" : "#"}
+                  className={`flex flex-col items-center group ${
+                    day.hasQuiz && day.quizCompleted
+                      ? "cursor-pointer"
+                      : "cursor-default"
+                  }`}
                 >
                   <div
                     className={`
-                      w-16 h-16 rounded-full flex items-center justify-center border-2 transition-all duration-300
+                      relative w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center border-2 transition-all duration-300 flex-shrink-0
                       ${
                         day.completed
                           ? "bg-green-500 border-green-500 text-white shadow-lg"
@@ -255,200 +261,121 @@ export default function ContentHub() {
                           ? "bg-primary border-primary text-primary-foreground shadow-lg animate-pulse"
                           : "bg-muted border-border text-muted-foreground hover:border-primary/50 hover:bg-primary/5"
                       }
-                      group-hover:scale-110 group-hover:shadow-xl
+                      ${
+                        day.hasQuiz && day.quizCompleted
+                          ? "group-hover:scale-110 group-hover:shadow-xl"
+                          : ""
+                      }
                     `}
                   >
                     {day.completed ? (
-                      <CheckCircle2 className="w-6 h-6" />
+                      <CheckCircle2 className="w-5 h-5 sm:w-6 sm:h-6" />
                     ) : (
-                      <span className="font-bold font-sans">{day.day}</span>
+                      <span className="text-xs sm:text-sm font-bold font-sans">
+                        {day.dayName}
+                      </span>
+                    )}
+                    {day.hasQuiz && day.quizCompleted && (
+                      <div className="absolute -top-1 -right-1 w-4 h-4 bg-secondary rounded-full flex items-center justify-center">
+                        <Brain className="w-2.5 h-2.5 text-white" />
+                      </div>
                     )}
                   </div>
-                  <div className="text-center mt-2">
+                  <div className="text-center mt-1 min-w-0">
                     <p
-                      className={`text-xs font-medium font-sans ${
-                        day.current ? "text-primary" : "text-muted-foreground"
-                      }`}
-                    >
-                      {day.dayName}
-                    </p>
-                    <p
-                      className={`text-xs font-sans max-w-16 leading-tight ${
+                      className={`text-xs font-sans leading-tight truncate max-w-16 ${
                         day.current ? "text-primary" : "text-muted-foreground"
                       }`}
                     >
                       {day.title}
                     </p>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Scrollable Content - Bottom Section */}
-        <section className="space-y-6">
-          {/* Articles Section */}
-          <div>
-            <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center gap-2">
-                <BookOpen className="w-5 h-5 text-accent" />
-                <h2 className="text-xl font-semibold text-foreground font-sans">
-                  Articles
-                </h2>
-              </div>
-              <Button
-                variant="ghost"
-                size="sm"
-                className="text-accent hover:bg-accent/10"
-              >
-                View All <ArrowRight className="w-4 h-4 ml-1" />
-              </Button>
-            </div>
-
-            <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide">
-              {contentData.articles.map((article) => (
-                <Card
-                  key={article.id}
-                  className="flex-shrink-0 w-80 border-border/50 hover:border-accent/50 bg-card/90 backdrop-blur-sm shadow-md hover:shadow-lg transition-all duration-300 hover:scale-[1.02] cursor-pointer"
-                >
-                  <CardHeader className="pb-3">
-                    <div className="flex items-start justify-between">
-                      <div className="space-y-2">
-                        <div className="flex items-center gap-2">
-                          <Badge variant="outline" className="text-xs">
-                            {getCategoryIcon(article.category)}
-                            <span className="ml-1 font-sans">
-                              {article.category}
-                            </span>
-                          </Badge>
-                          <Badge
-                            variant="outline"
-                            className={`text-xs ${getDifficultyColor(
-                              article.difficulty
-                            )}`}
-                          >
-                            {article.difficulty}
-                          </Badge>
-                        </div>
-                        <CardTitle className="text-lg font-bold text-card-foreground font-sans line-clamp-2">
-                          {article.title}
-                        </CardTitle>
-                      </div>
-                      {article.completed ? (
-                        <CheckCircle2 className="w-5 h-5 text-green-500 flex-shrink-0" />
-                      ) : (
-                        <Circle className="w-5 h-5 text-muted-foreground flex-shrink-0" />
-                      )}
-                    </div>
-                  </CardHeader>
-                  <CardContent className="pt-0">
-                    <p className="text-sm text-muted-foreground mb-4 font-sans line-clamp-2">
-                      {article.description}
-                    </p>
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-1 text-xs text-muted-foreground">
-                        <Clock className="w-3 h-3" />
-                        <span className="font-sans">{article.readingTime}</span>
-                      </div>
-                      <Button
-                        size="sm"
-                        variant={article.completed ? "outline" : "default"}
-                      >
-                        {article.completed ? "Review" : "Read"}
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-
-          {/* Quizzes Section */}
-          <div>
-            <div className="flex items-center justify-between mb-4">
+        {/* Quizzes Section - Edge to Edge */}
+        <section>
+          <div className="max-w-6xl mx-auto px-6 mb-4">
+            <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <Brain className="w-5 h-5 text-secondary" />
                 <h2 className="text-xl font-semibold text-foreground font-sans">
-                  Quizzes
+                  Available Quizzes
                 </h2>
               </div>
-              <Button
-                variant="ghost"
-                size="sm"
-                className="text-secondary hover:bg-secondary/10"
-              >
-                View All <ArrowRight className="w-4 h-4 ml-1" />
-              </Button>
             </div>
+          </div>
 
-            <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide">
+          <div className="overflow-x-auto">
+            <div className="flex gap-4 px-6 pb-4 scrollbar-hide">
               {contentData.quizzes.map((quiz) => (
-                <Card
-                  key={quiz.id}
-                  className="flex-shrink-0 w-80 border-border/50 hover:border-secondary/50 bg-card/90 backdrop-blur-sm shadow-md hover:shadow-lg transition-all duration-300 hover:scale-[1.02] cursor-pointer"
-                >
-                  <CardHeader className="pb-3">
-                    <div className="flex items-start justify-between">
-                      <div className="space-y-2">
-                        <div className="flex items-center gap-2">
-                          <Badge
-                            variant="outline"
-                            className="text-xs bg-secondary/10 text-secondary border-secondary/30"
-                          >
-                            Quiz
-                          </Badge>
-                          <Badge
-                            variant="outline"
-                            className={`text-xs ${getDifficultyColor(
-                              quiz.difficulty
-                            )}`}
-                          >
-                            {quiz.difficulty}
-                          </Badge>
+                <Link key={quiz.id} href="/quiz/1">
+                  <Card className="flex-shrink-0 w-80 border-border/50 hover:border-secondary/50 bg-card/90 backdrop-blur-sm shadow-md hover:shadow-lg transition-all duration-300 hover:scale-[1.02] cursor-pointer">
+                    <CardHeader className="pb-3">
+                      <div className="flex items-start justify-between">
+                        <div className="space-y-2">
+                          <div className="flex items-center gap-2">
+                            <Badge
+                              variant="outline"
+                              className="text-xs bg-secondary/10 text-secondary border-secondary/30"
+                            >
+                              Quiz
+                            </Badge>
+                            <Badge
+                              variant="outline"
+                              className={`text-xs ${getDifficultyColor(
+                                quiz.difficulty
+                              )}`}
+                            >
+                              {quiz.difficulty}
+                            </Badge>
+                          </div>
+                          <CardTitle className="text-lg font-bold text-card-foreground font-sans line-clamp-2">
+                            {quiz.title}
+                          </CardTitle>
                         </div>
-                        <CardTitle className="text-lg font-bold text-card-foreground font-sans line-clamp-2">
-                          {quiz.title}
-                        </CardTitle>
+                        {quiz.completed ? (
+                          <div className="flex flex-col items-center">
+                            <CheckCircle2 className="w-5 h-5 text-green-500" />
+                            {quiz.score && (
+                              <span className="text-xs text-green-600 font-bold mt-1">
+                                {quiz.score}%
+                              </span>
+                            )}
+                          </div>
+                        ) : (
+                          <Circle className="w-5 h-5 text-muted-foreground flex-shrink-0" />
+                        )}
                       </div>
-                      {quiz.completed ? (
-                        <div className="flex flex-col items-center">
-                          <CheckCircle2 className="w-5 h-5 text-green-500" />
-                          {quiz.score && (
-                            <span className="text-xs text-green-600 font-bold mt-1">
-                              {quiz.score}%
-                            </span>
-                          )}
+                    </CardHeader>
+                    <CardContent className="pt-0">
+                      <p className="text-sm text-muted-foreground mb-4 font-sans line-clamp-2">
+                        {quiz.description}
+                      </p>
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                          <span className="font-sans">
+                            {quiz.questions} questions
+                          </span>
                         </div>
-                      ) : (
-                        <Circle className="w-5 h-5 text-muted-foreground flex-shrink-0" />
-                      )}
-                    </div>
-                  </CardHeader>
-                  <CardContent className="pt-0">
-                    <p className="text-sm text-muted-foreground mb-4 font-sans line-clamp-2">
-                      {quiz.description}
-                    </p>
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-1 text-xs text-muted-foreground">
-                        <span className="font-sans">
-                          {quiz.questions} questions
-                        </span>
+                        <Button
+                          size="sm"
+                          variant={quiz.completed ? "outline" : "default"}
+                          className={
+                            quiz.completed
+                              ? ""
+                              : "bg-secondary hover:bg-secondary/90"
+                          }
+                        >
+                          {quiz.completed ? "Retake" : "Start Quiz"}
+                        </Button>
                       </div>
-                      <Button
-                        size="sm"
-                        variant={quiz.completed ? "outline" : "default"}
-                        className={
-                          quiz.completed
-                            ? ""
-                            : "bg-secondary hover:bg-secondary/90"
-                        }
-                      >
-                        {quiz.completed ? "Retake" : "Start Quiz"}
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
+                    </CardContent>
+                  </Card>
+                </Link>
               ))}
             </div>
           </div>
