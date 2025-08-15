@@ -1,43 +1,38 @@
 "use client"
 
-import { Home, TrendingUp, Gamepad2, Users, BookOpen } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 
-const navItems = [
-  { id: "home", label: "Home", icon: Home },
-  { id: "track", label: "Track", icon: TrendingUp },
-  { id: "game", label: "Game", icon: Gamepad2, active: true },
-  { id: "community", label: "Community", icon: Users },
-  { id: "learn", label: "Learn", icon: BookOpen },
-]
-
-export default function BottomNavigation() {
+export function BottomNavigation() {
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-50 bg-background border-t-4 border-border shadow-lg">
-      <div className="flex items-center justify-around px-2 py-2">
-        {navItems.map((item) => {
-          const Icon = item.icon
-          return (
-            <Button
-              key={item.id}
-              variant="ghost"
-              className={`
-                flex flex-col items-center gap-1 p-2 h-auto min-w-0 flex-1
-                ${item.active ? "text-primary" : "text-muted-foreground hover:text-foreground"}
-              `}
-            >
-              <div className={`p-2 border-2 border-border rounded-md shadow-xs ${item.active ? "bg-primary text-primary-foreground" : "bg-muted"}`}>
-                <Icon className="h-5 w-5" />
-              </div>
-              <span className={`text-xs font-bold font-sans ${item.active ? "text-primary" : "text-muted-foreground"}`}>{item.label}</span>
-            </Button>
-          )
-        })}
-      </div>
+    <div className="fixed bottom-0 left-0 right-0 z-40 bg-card border-t border-border shadow-lg">
+      <div className="max-w-4xl mx-auto px-6 py-4">
+        <div className="grid grid-cols-5 gap-4 items-center">
+          {/* Home Tab */}
+          <Button variant="ghost" className="text-card-foreground hover:text-primary hover:bg-primary/10 font-medium font-sans">
+            Home
+          </Button>
 
-      <div className="flex justify-center pb-2">
-        <div className="w-32 h-1 bg-foreground/20 rounded-full" />
+          {/* Courses Tab */}
+          <Button variant="ghost" className="text-card-foreground hover:text-primary hover:bg-primary/10 font-medium font-sans">
+            Courses
+          </Button>
+
+          {/* Centered Learn Button */}
+          <Button className="bg-primary text-primary-foreground hover:bg-primary/90 font-bold text-lg px-6 py-2 shadow-lg font-sans">
+            Learn
+          </Button>
+
+          {/* Ranks Tab */}
+          <Button variant="ghost" className="text-card-foreground hover:text-primary hover:bg-primary/10 font-medium font-sans">
+            Ranks
+          </Button>
+
+          {/* Progress Tab */}
+          <Button variant="ghost" className="text-card-foreground hover:text-primary hover:bg-primary/10 font-medium font-sans">
+            Progress
+          </Button>
+        </div>
       </div>
-    </nav>
-  )
+    </div>
+  );
 }
