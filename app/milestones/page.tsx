@@ -45,7 +45,7 @@ export default function MilestonesPage() {
           color: 'var(--card-foreground)'
         }}
       >
-        Celebrate your major financial wins! These are the big checkpoints you'll unlock along your journey.
+        Celebrate your major financial wins! These are the big checkpoints you’ll unlock along your journey.
       </p>
 
       <ul
@@ -112,11 +112,11 @@ export default function MilestonesPage() {
             </div>
 
             {/* Right side: Status icon */}
-            <div style={{ fontSize: '1.8rem' }}>
+            <div style={{ fontSize: '1.8rem', minWidth: 38, textAlign: 'right' }}>
               {m.achieved ? (
                 '✅'
               ) : (
-                <span style={{ color: '#0E27F5' }}>🔒</span>
+                <span style={{ color: '#0E27F5', fontSize: '2rem' }}>🔒</span>
               )}
             </div>
           </li>
